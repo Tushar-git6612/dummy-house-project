@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./components/home/Index";
+import { Routes, Route } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import About from "./components/about/Index";
+import Contact from "./components/contact/Index";
+import PropertyList from "./components/property list/Index";
+import ProperType from "./components/property type/Index";
+import PropertyAgent from "./components/property agent/Index";
+import Testimonial from "./components/testimonial/Index";
+import Error from "./components/error/Index";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="Property/PropertyList" element={<PropertyList />} />
+        <Route path="Property/PropertyType" element={<ProperType />} />
+        <Route path="Property/PropertyAgent" element={<PropertyAgent />} />
+        <Route path="/Testimonial" element={<Testimonial />} />
+        <Route path="/Error" element={<Error />} />
+        <Route path="*" element={<Error />} />
+      </Routes> */}
+    </>
   );
 }
 

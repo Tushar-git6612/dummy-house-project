@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+div.slick-list .slick-slide{
+  cursor: grab;
+}
+
+nav.navbar div.dropdown div.dropdownvisible {
+  visibility: visible;
+  opacity: 1;
+  transform: rotateX(0deg);
+  transition: .8s;
+}
