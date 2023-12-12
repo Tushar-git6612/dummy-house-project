@@ -19,7 +19,7 @@ import ProperType from "./components/property type/Index";
 import PropertyAgent from "./components/property agent/Index";
 import Testimonial from "./components/testimonial/Index";
 import Error from "./components/error/Index";
-import { basename } from "path";
+import Nav from "./components/home/Navbar/Nav";
 
 // const App = lazy(() => delayForDemo(import("./App")));
 
@@ -30,8 +30,26 @@ import { basename } from "path";
 //   }).then(() => promise);
 // }
 
+
 const Router = createBrowserRouter([
   {
+    path:"/",
+    element: <Nav
+    logoText="makaan"
+    home="home"
+    about="about"
+    property="property"
+    propertyList="property list"
+    propertyType="property type"
+    propertyAgent="property agent"
+    page="pages"
+    testimonial="Testimonial"
+    error="404 error"
+    contact="contact"
+    addProperty="add property"
+    /> ,
+    children:[
+          {
     path: "/",
     element: <Home />,
     errorElement: <Error />,
@@ -63,6 +81,8 @@ const Router = createBrowserRouter([
   {
     path: "/Error",
     element: <Error />,
+  },
+    ],
   },
 ]);
 

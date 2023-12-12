@@ -97,7 +97,7 @@
 }
 
 .navbar .dropdown-toggle[aria-expanded=true]::after {
-    transform: rotate(-180deg);
+    /* transform: rotate(-180deg); */
 }
 
 .navbar-light .navbar-nav .nav-link {

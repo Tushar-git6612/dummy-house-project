@@ -7,59 +7,66 @@ import Contact from "../home/contact/Contact";
 import Footer from "../home/footer/footer";
 
 function Index() {
+  let num: number = 0;
   useEffect(() => {
-    document.title = "Property List";
-  }, []);
+    if (num < 1) {
+      document.title = "Property List";
+      const property$ = document.querySelector(".propertyLink");
+      const page$ = document.querySelector(".pageLink");
+      if (
+        window.location.href == `http://localhost:3000/PropertyList` ||
+        window.location.href == `http://localhost:3000/PropertyType` ||
+        window.location.href == `http://localhost:3000/PropertyAgent`
+      ) {
+        if (!property$?.classList.contains("active")) {
+          property$?.classList.add("active");
+          page$?.classList.remove("active");
+        }
+      } else if (
+        window.location.href == `http://localhost:3000/Error` ||
+        window.location.href == `http://localhost:3000/Testimonial`
+      ) {
+        if (!page$?.classList.contains("active")) {
+          page$?.classList.add("active");
+        }
+      } else {
+        property$?.classList.remove("active");
+        page$?.classList.remove("active");
+      }
+      num++;
+    }
+    // eslint-disable-next-line
+  }, [document.title, window.location.href]);
 
   return (
     <>
-      <div className="container-xxl bg-white p-0">
+      {/* header */}
+      <Header pageName="Property List" />
+      {/* header */}
 
-        {/* nav */}
-        <Nav
-          logoText="makaan"
-          home="home"
-          about="about"
-          property="property"
-          propertyList="property list"
-          propertyType="property type"
-          propertyAgent="property agent"
-          page="pages"
-          testimonial="Testimonial"
-          error="404 error"
-          contact="contact"
-          addProperty="add property"
-        />
-        {/* nav */}
+      {/* search */}
+      <section>
+        <Search />
+      </section>
+      {/* search */}
 
-        {/* header */}
-        <Header pageName="Property List" />
-        {/* header */}
+      {/* property Listing */}
+      <section>
+        <Propertylist />
+      </section>
+      {/* property Listing */}
 
-        {/* search */}
-        <section>
-          <Search />
-        </section>
-        {/* search */}
+      {/* contact agent */}
+      <section>
+        <Contact />
+      </section>
+      {/* contact agent */}
 
-        {/* property Listing */}
-        <section>
-          <Propertylist />
-        </section>
-        {/* property Listing */}
-
-        {/* contact agent */}
-        <section>
-          <Contact />
-        </section>
-        {/* contact agent */}
-
-        {/* footer */}
-        <footer>
-          <Footer />
-        </footer>
-        {/* footer */}
-      </div>
+      {/* footer */}
+      <footer>
+        <Footer />
+      </footer>
+      {/* footer */}
     </>
   );
 }

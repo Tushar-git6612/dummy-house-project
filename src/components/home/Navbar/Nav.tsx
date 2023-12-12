@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, } from "react";
 import iconDeal from "../../../img/icon-deal.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 type propstypes = {
   logoText: string;
@@ -18,38 +18,21 @@ type propstypes = {
 };
 
 function Nav(props: propstypes) {
-  const [navPropertyActiveColor, setNavPropertyActiveColor] = useState<
-    string | undefined
-  >("");
-  const [navPageActiveColor, setNavPageActiveColor] = useState<
-    string | undefined
-  >("");
-
-  let num: number = 0;
-  useEffect(() => {
-    if (num < 1) {
-      if (
-        window.location.href === `http://localhost:3000/PropertyList` ||
-        window.location.href === `http://localhost:3000/PropertyType` ||
-        window.location.href === `http://localhost:3000/PropertyAgent`
-      ) {
-        setNavPropertyActiveColor("#00B98E");
-      } else if (
-        window.location.href === `http://localhost:3000/Error` ||
-        window.location.href === `http://localhost:3000/Testimonial`
-      ) {
-        setNavPageActiveColor("#00B98E");
-      }
-      num++;
-    }
-  }, []);
 
   const clickHandle = (e: any) => {
     const propertySubList = document.querySelector(".dropdown-menu");
     const pageSubList = document.querySelector(".pagedropdown");
-    e.target.textContent === "pages"
-      ? pageSubList?.classList.toggle("dropdownvisible")
-      : propertySubList?.classList.toggle("dropdownvisible");
+    if (e.target.textContent == "pages") {
+      if (propertySubList?.classList.contains("dropdownvisible")) {
+        propertySubList?.classList.remove("dropdownvisible");
+      }
+      pageSubList?.classList.toggle("dropdownvisible");
+    } else {
+      if (pageSubList?.classList.contains("dropdownvisible")) {
+        pageSubList?.classList.remove("dropdownvisible");
+      }
+      propertySubList?.classList.toggle("dropdownvisible");
+    }
   };
 
   return (
@@ -91,8 +74,7 @@ function Nav(props: propstypes) {
               <div className="nav-item  dropdown">
                 <Link
                   to=""
-                  style={{ color: `${navPropertyActiveColor}` }}
-                  className={`nav-link Link dropdown-toggle `}
+                  className={`nav-link Link propertyLink dropdown-toggle`}
                   data-bs-toggle="dropdown"
                   onClick={clickHandle}
                 >
@@ -122,8 +104,7 @@ function Nav(props: propstypes) {
               <div className="nav-item dropdown ">
                 <Link
                   to=""
-                  style={{ color: `${navPageActiveColor}` }}
-                  className="nav-link Link dropdown-toggle"
+                  className="nav-link Link pageLink dropdown-toggle"
                   data-bs-toggle="dropdown"
                   onClick={clickHandle}
                 >
@@ -157,6 +138,7 @@ function Nav(props: propstypes) {
           </div>
         </nav>
       </div>
+      <Outlet />
     </>
   );
 }
